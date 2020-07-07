@@ -1,6 +1,5 @@
 package com.sestevez.mapper;
 
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,6 +10,7 @@ import java.util.stream.Collectors;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AstraDemoResource {
+
     @Inject
     CreatureService creatureService;
 
