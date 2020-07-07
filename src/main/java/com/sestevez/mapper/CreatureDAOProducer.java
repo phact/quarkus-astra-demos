@@ -1,6 +1,7 @@
 package com.sestevez.mapper;
 
 import com.datastax.oss.driver.api.core.CqlIdentifier;
+import com.datastax.oss.driver.api.mapper.annotations.Entity;
 import com.datastax.oss.quarkus.runtime.api.session.QuarkusCqlSession;
 
 import javax.enterprise.context.ApplicationScoped;
