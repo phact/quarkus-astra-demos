@@ -8,7 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
-public class CreatureDAOProducer {
+public class CreatureDaoProducer {
 
     private final CreatureDao creatureDao;
 
