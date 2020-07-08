@@ -13,11 +13,13 @@ public class CreatureDaoProducer {
     private final CreatureDao creatureDao;
 
     @Inject
-    public CreatureDaoProducer(QuarkusCqlSession cqlSession) {
+    public CreatureDaoProducer(QuarkusCqlSession cqlSession, AstraServiceConfig astraServiceConfig) {
         // create a mapper
         CreatureMapper mapper = new CreatureMapperBuilder(cqlSession).build();
+        // retrieve the keyspace
+        CqlIdentifier keyspace = CqlIdentifier.fromCql(astraServiceConfig.getKeyspace());
         // instantiate our Daos
-        creatureDao = mapper.creatureDao();
+        creatureDao = mapper.creatureDao(keyspace);
     }
 
     @Produces
