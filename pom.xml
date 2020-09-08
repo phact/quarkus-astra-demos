@@ -45,6 +45,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jsonb</artifactId>
+      <version>1.5.2.Final</version>
+    </dependency>
+    <dependency>
       <groupId>com.datastax.oss.quarkus</groupId>
       <artifactId>cassandra-quarkus-client</artifactId>
       <version>1.0.0-alpha2</version>
