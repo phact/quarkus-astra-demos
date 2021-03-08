@@ -1,0 +1,6 @@
+# Configuration file
+# key = value
+quarkus.cassandra.cloud.secure-connect-bundle=/home/tato/Downloads/secure-connect-serverlessdb.zip
+# Authentication
+quarkus.cassandra.auth.username=token
+quarkus.cassandra.auth.password=AstraCS:REPLACE_ME:REPLACE_ME

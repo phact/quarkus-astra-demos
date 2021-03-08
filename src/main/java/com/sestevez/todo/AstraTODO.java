@@ -3,6 +3,8 @@ package com.sestevez.todo;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,8 +21,10 @@ import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.quarkus.runtime.api.session.QuarkusCqlSession;
 import com.sestevez.todo.api.Todo;
+import io.quarkus.runtime.StartupEvent;
 import io.smallrye.common.annotation.Blocking;
 
+@ApplicationScoped
 @Path("/api")
 public class AstraTODO {
     @Inject
@@ -28,6 +32,12 @@ public class AstraTODO {
 
     private String keyspaceName = "free";
     private String tableName = "todolist";
+
+    public boolean onStart(@Observes StartupEvent ev){
+        ResultSet rs = this.cqlSession.execute("CREATE TABLE IF NOT EXISTS todo.todo (id text PRIMARY KEY, title text, completed boolean);");
+        System.out.println("**** Table created " + rs.wasApplied() + "****");
+        return rs.wasApplied();
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
