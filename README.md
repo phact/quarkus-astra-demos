@@ -1,5 +1,18 @@
 # quarkus-astra-demo
 
+Astra is DataStax's serverless cassandra offering on the cloud. To use this project clone the repo, create a serverless database at https://astra.datastax.com, download your secure connect bundle from the connect screen, and create a token for your app to use in the settings screen.
+
+Create and populate your application.properties file:
+
+    cp  ./src/main/resources/application.properties.template ./src/main/resources/application.properties
+
+Replace the following lines to point at your scb and with your token:
+
+    quarkus.cassandra.cloud.secure-connect-bundle=<</PATH_TO_SCB.ZIP>>
+    quarkus.cassandra.auth.password=AstraCS:<<REPLACE_ME:REPLACE_ME>>
+
+If you preffer to stub out the code yourself, pull the `puzzle` branch instead and give it a try. This `main` branch has the required endpoints stubbed out.
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
