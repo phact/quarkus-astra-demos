@@ -1,19 +1,17 @@
-package com.sestevez.todo.API;
+package com.sestevez.todo.api;
 
-import javax.json.bind.annotation.JsonbProperty;
 import java.util.UUID;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Todo {
+    private UUID id;
+    private String title;
+    private boolean completed;
 
     public Todo() {
     }
-
-    @JsonbProperty()
-    public UUID id;
-    @JsonbProperty()
-    public String title;
-    @JsonbProperty()
-    public boolean completed;
 
     public Todo(UUID id, String title, boolean completed) {
         this.id = id;
@@ -21,9 +19,8 @@ public class Todo {
         this.completed = completed;
     }
 
-
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(UUID id) {
@@ -31,7 +28,7 @@ public class Todo {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -39,11 +36,10 @@ public class Todo {
     }
 
     public boolean isCompleted() {
-        return completed;
+        return this.completed;
     }
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
-
 }
