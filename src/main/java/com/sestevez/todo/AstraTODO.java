@@ -24,6 +24,8 @@ public class AstraTODO {
     private String keyspaceName = "free";
     private String tableName = "todolist";
 
+    
+
 
 
 }
