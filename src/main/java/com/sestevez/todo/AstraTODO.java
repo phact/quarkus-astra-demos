@@ -6,12 +6,7 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -78,6 +73,40 @@ public class AstraTODO {
         }
 
     }
+
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/todo/{list_id}/{id}")
+    @Blocking
+    public boolean getTodos(@PathParam("list_id") String list_id, @PathParam("id") String id){
+        PreparedStatement statement = this.cqlSession.prepare("DELETE FROM " + this.keyspaceName + "." +
+                this.tableName + " WHERE list_id = ? AND id = ?");
+
+        BoundStatement boundStmt = statement.bind(list_id, id);
+
+        ResultSet rs = this.cqlSession.execute(boundStmt);
+
+        return rs.wasApplied();
+
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/todo/{list_id}/{id}")
+    @Blocking
+    public boolean completeTodo(@PathParam("list_id") String list_id, @PathParam("id") String id) {
+
+        PreparedStatement stmt = this.cqlSession.prepare("INSERT INTO " + this.keyspaceName +
+                "." + this.tableName + " (id, list_id, completed) VALUES (?, ?, ?)");
+
+        BoundStatement boundStmt = stmt.bind(id, list_id, true);
+
+        ResultSet rs = this.cqlSession.execute(boundStmt);
+
+        return rs.wasApplied();
+
+    }
+
 
 
 }
