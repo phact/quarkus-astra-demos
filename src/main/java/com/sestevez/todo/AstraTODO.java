@@ -58,6 +58,7 @@ public class AstraTODO {
     @Path("/todo/{list_id}")
     @Blocking
     public Response setTodo(@PathParam("list_id") String list_id, Todo todo) {
+        System.out.println("INSERT INTO " + this.keyspaceName + "." + this.tableName + "(list_id, id, title, completed) VALUES (?,?,?,?)");
         PreparedStatement statement = this.cqlSession
                 .prepare("INSERT INTO " + this.keyspaceName + "." + this.tableName + "(list_id, id, title, completed) VALUES (?,?,?,?)");
 
