@@ -39,12 +39,8 @@ public class AstraTODO {
     @Path("/todo/{list_id}")
     @Blocking
     public List<Todo> getTodos(@PathParam("list_id") String list_id) {
-        PreparedStatement statement = this.cqlSession
-                .prepare("SELECT * FROM " + this.keyspaceName + "." + this.tableName + " where list_id =?");
-
-        BoundStatement bound = statement.bind(list_id);
-
-        ResultSet rs = this.cqlSession.execute(bound);
+        ResultSet rs = this.cqlSession
+                .execute("SELECT * FROM " + this.keyspaceName + "." + this.tableName + " where list_id =?", list_id);
 
         List<Row> rows = rs.all();
         return rows.stream()
@@ -58,13 +54,10 @@ public class AstraTODO {
     @Path("/todo/{list_id}")
     @Blocking
     public Response setTodo(@PathParam("list_id") String list_id, Todo todo) {
-        System.out.println("INSERT INTO " + this.keyspaceName + "." + this.tableName + "(list_id, id, title, completed) VALUES (?,?,?,?)");
-        PreparedStatement statement = this.cqlSession
-                .prepare("INSERT INTO " + this.keyspaceName + "." + this.tableName + "(list_id, id, title, completed) VALUES (?,?,?,?)");
-
-        BoundStatement bound = statement.bind(list_id, todo.getId(), todo.getTitle(), todo.isCompleted());
-
-        ResultSet rs = this.cqlSession.execute(bound);
+        ResultSet rs = this.cqlSession
+                .execute("INSERT INTO " + this.keyspaceName + "." + this.tableName +
+                        "(list_id, id, title, completed) VALUES (?,?,?,?)",
+                        list_id, todo.getId(), todo.getTitle(), todo.isCompleted());
 
         boolean successful = rs.wasApplied();
         if (successful) {
@@ -80,15 +73,10 @@ public class AstraTODO {
     @Path("/todo/{list_id}/{id}")
     @Blocking
     public boolean getTodos(@PathParam("list_id") String list_id, @PathParam("id") String id){
-        PreparedStatement statement = this.cqlSession.prepare("DELETE FROM " + this.keyspaceName + "." +
-                this.tableName + " WHERE list_id = ? AND id = ?");
-
-        BoundStatement boundStmt = statement.bind(list_id, id);
-
-        ResultSet rs = this.cqlSession.execute(boundStmt);
+        ResultSet rs = this.cqlSession.execute("DELETE FROM " + this.keyspaceName + "." +
+                this.tableName + " WHERE list_id = ? AND id = ?",list_id, id);
 
         return rs.wasApplied();
-
     }
 
     @POST
@@ -97,17 +85,10 @@ public class AstraTODO {
     @Blocking
     public boolean completeTodo(@PathParam("list_id") String list_id, @PathParam("id") String id) {
 
-        PreparedStatement stmt = this.cqlSession.prepare("INSERT INTO " + this.keyspaceName +
-                "." + this.tableName + " (id, list_id, completed) VALUES (?, ?, ?)");
-
-        BoundStatement boundStmt = stmt.bind(id, list_id, true);
-
-        ResultSet rs = this.cqlSession.execute(boundStmt);
+        ResultSet rs = this.cqlSession.execute("INSERT INTO " + this.keyspaceName +
+                "." + this.tableName + " (id, list_id, completed) VALUES (?, ?, ?)", id, list_id, true);
 
         return rs.wasApplied();
 
     }
-
-
-
 }
