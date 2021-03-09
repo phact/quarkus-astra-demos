@@ -59,7 +59,7 @@ public class AstraTODO {
     @Blocking
     public Response setTodo(@PathParam("list_id") String list_id, Todo todo) {
         PreparedStatement statement = this.cqlSession
-                .prepare("INSERT INTO " + this.keyspaceName + "." + this.tableName + "(list_id, id, title, completed)VALUES(?,?,?,?)");
+                .prepare("INSERT INTO " + this.keyspaceName + "." + this.tableName + "(list_id, id, title, completed) VALUES (?,?,?,?)");
 
         BoundStatement bound = statement.bind(list_id, todo.getId(), todo.getTitle(), todo.isCompleted());
 
