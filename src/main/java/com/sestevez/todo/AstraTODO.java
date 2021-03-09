@@ -48,7 +48,7 @@ public class AstraTODO {
 
         List<Row> rows = rs.all();
         return rows.stream()
-          .map(x -> new Todo(x.getUuid("id"), x.getString("title"), x.getBoolean("completed")))
+          .map(x -> new Todo(x.getString("id"), x.getString("title"), x.getBoolean("completed")))
           .collect(Collectors.toList());
     }
 
