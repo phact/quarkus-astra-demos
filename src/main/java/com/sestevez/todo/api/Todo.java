@@ -1,29 +1,27 @@
 package com.sestevez.todo.api;
 
-import java.util.UUID;
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
 public class Todo {
-    private UUID id;
+    private String id;
     private String title;
     private boolean completed;
 
     public Todo() {
     }
 
-    public Todo(UUID id, String title, boolean completed) {
+    public Todo(String id, String title, boolean completed) {
         this.id = id;
         this.title = title;
         this.completed = completed;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
