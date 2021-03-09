@@ -29,7 +29,7 @@ public class AstraTODO {
     private String tableName = "todolist";
 
     public boolean onStart(@Observes StartupEvent ev){
-        ResultSet rs = this.cqlSession.execute("CREATE TABLE IF NOT EXISTS todo.todo (id text PRIMARY KEY, title text, completed boolean);");
+        ResultSet rs = this.cqlSession.execute("CREATE TABLE IF NOT EXISTS " + this.keyspaceName+"." + this.tableName + "(id text PRIMARY KEY, title text, completed boolean);");
         System.out.println("**** Table created " + rs.wasApplied() + "****");
         return rs.wasApplied();
     }
