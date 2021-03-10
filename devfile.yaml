@@ -6,7 +6,7 @@ projects:
     source:
       location: 'https://github.com/phact/quarkus-astra-demos'
       type: git
-      branch: todo
+      branch: main
 components:
   - id: redhat/quarkus-java11/latest
     type: chePlugin
