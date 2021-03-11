@@ -90,4 +90,4 @@ You can then execute your native executable with: `./target/quarkus-astra-demo-0
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
 
 ## Running on Red Hat Developer Sandbox
-Run this application on the free [Red Hat Developer Sandbox](https://developers.redhat.com/developer-sandbox). All you need to do is create an account and then [click here](https://workspaces.openshift.com/f?url=https://github.com/phact/quarkus-astra-demos/tree/todo) to load the workspace!
+Run this application on the free [Red Hat Developer Sandbox](https://developers.redhat.com/developer-sandbox). All you need to do is create an account and then [click here](https://workspaces.openshift.com/f?url=https://github.com/phact/quarkus-astra-demos) to load the workspace!
