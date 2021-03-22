@@ -6,7 +6,7 @@ To use this project:
 
 ✅ Clone the repo
 
-✅ Register (if needed) and Sign In to Astra [https://astra.datastax.com](https://dtsx.io/workshop): You can use your `Github`, `Google` accounts or register with an `email`.
+✅ Register (if needed) and Sign In to Astra [https://astra.datastax.com](https://dtsx.io/3r8nOlJ): You can use your `Github`, `Google` accounts or register with an `email`.
 
 _Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character_
 
